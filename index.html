@@ -1,5 +1,32 @@
 <!DOCTYPE html>
 <html>
     <head></head>
-    <body>Trust</body>
+    <body>Trust1
+        <script>
+            function test(){
+                try{
+                    fetch("https://raw.githubusercontent.com/GalaxyWebD/GalaxyWebD.github.io/main/logo.jpg")
+                .then((response) => {
+                    response.arrayBuffer().then(res=> {
+                        let type = "image/jpeg";
+                        let blob = new Blob([res], {type: type});
+
+                        let objectUrl = URL.createObjectURL(blob);
+                        let img = document.createElement("img");
+                        img.src= objectUrl;
+                        img.onload = ()=>{
+                            console.log('img2', {img: img});
+                            console.log('img3:', img.naturalHeight);
+                        }
+                    })
+                }).catch((err)=>{
+                    console.log('err', err);
+                });
+                }catch(err2){
+                    console.log('err2',err2);
+                }
+            }
+            test();
+        </script>
+    </body>
 </html>
